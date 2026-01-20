@@ -15,7 +15,23 @@ Treinar e avaliar um modelo supervisionado
 
 Garantir reprodutibilidade por meio de ambiente containerizado (Docker)
 
+📂 Estrutura do Projeto
+
+O projeto está organizado da seguinte forma:
+
+Notebook:
+
+tech_challenge_fase1_cancer_mama.ipynb:
+Consolida a análise exploratória, o pré-processamento dos dados e a implementação e avaliação de um modelo de machine learning para classificação.
+
+Diretórios:
+
+/data: Contém o dataset utilizado no projeto
+
+/notebook: Armazena o notebook Jupyter utilizado no desenvolvimento do projeto.
+
 ⚙️ Requisitos
+
 🔹 Para execução com Docker (recomendado)
 
 Docker 20.x ou superior
@@ -60,24 +76,13 @@ No Jupyter, abra:
 
 Execute as células em ordem sequencial.
 
-🧠 Metodologia
 
-Separação dos dados em treino e teste
+👥 Equipe
 
-Normalização das variáveis com StandardScaler
+Este projeto foi desenvolvido pelo Grupo 56 como parte do Tech Challenge FIAP Pós-Tech:
 
-Treinamento do modelo de Regressão Logística
+Araguacy Bezerra Pereira
+Emerson Vitorio de Oliveira
+Robson Carvalho Calixto
+Vinicius Fernando M. Costa
 
-Uso de Pipeline para garantir consistência no pré-processamento
-
-Avaliação do desempenho com métricas estatísticas
-
-📊 Avaliação do Modelo
-
-Acurácia
-
-Matriz de confusão
-
-Relatório de classificação
-
-Essas métricas permitem avaliar a qualidade do modelo de classificação.
