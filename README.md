@@ -1,5 +1,5 @@
 🧬 Tech Challenge – Fase 1
-Classificação de Câncer de Mama com Machine Learning (Ambiente Docker)
+Classificação de Câncer de Mama com Machine Learning
 
 Este projeto foi desenvolvido como parte do Tech Challenge – Fase 1, com o objetivo de aplicar conceitos de Aprendizado de Máquina na resolução de um problema de classificação supervisionada, utilizando Regressão Logística para análise de dados relacionados ao câncer de mama.
 
@@ -86,3 +86,13 @@ Emerson Vitorio de Oliveira
 Robson Carvalho Calixto
 Vinicius Fernando M. Costa
 
+
+📚 Referências
+
+Dataset: [Breast Cancer Wisconsin (Diagnostic) Data Set](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data)
+
+James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An Introduction to Statistical Learning
+
+Géron, A. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow
+
+FÁVERO, Luiz Paulo; BELFIORE, Patrícia. Manual de análise de dados: estatística e machine learning 2. ed. Rio de Janeiro: Elsevier, 2024
