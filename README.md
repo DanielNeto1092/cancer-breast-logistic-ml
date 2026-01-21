@@ -1,112 +1,188 @@
-🧬 Tech Challenge – Fase 1
-Classificação de Câncer de Mama com Machine Learning
+# 🧬 Tech Challenge – Fase 1
 
-Este projeto foi desenvolvido como parte do Tech Challenge – Fase 1, com o objetivo de aplicar conceitos de Aprendizado de Máquina na resolução de um problema de classificação supervisionada, utilizando Regressão Logística para análise de dados relacionados ao câncer de mama.
+## Classificação de Câncer de Mama com Machine Learning
 
-O projeto utiliza Docker para garantir padronização do ambiente, reprodutibilidade dos resultados e facilidade de execução em diferentes sistemas operacionais.
+Este projeto foi desenvolvido como parte do **Tech Challenge – Fase 1 (FIAP Pós-Tech)**, com o objetivo de aplicar conceitos de **Aprendizado de Máquina** na resolução de um problema de **classificação supervisionada**, utilizando **Regressão Logística** para análise de dados relacionados ao diagnóstico de câncer de mama.
 
-🎯 Objetivo do Projeto
+A aplicação utiliza **Docker** para garantir **padronização do ambiente**, **reprodutibilidade dos resultados** e **facilidade de execução** em diferentes sistemas operacionais.
 
-🎯 Problema
 
-O diagnóstico precoce do câncer de mama é essencial para aumentar as chances de tratamento eficaz.
-Neste contexto, o projeto busca construir e avaliar modelos de classificação capazes de auxiliar a decisão clínica, priorizando métricas adequadas para problemas de saúde, como Recall (Sensibilidade).
 
-🗂 Estrutura do Projeto
-```
+## 🎯 Objetivo do Projeto
 
+O diagnóstico precoce do câncer de mama é fundamental para aumentar as chances de tratamento eficaz e reduzir a mortalidade.
+
+Neste contexto, o projeto tem como objetivo:
+
+* Construir um **modelo de classificação binária** (Benigno × Maligno);
+* Aplicar **Regressão Logística** como modelo base;
+* Realizar **análise exploratória e pré-processamento dos dados**;
+* Avaliar o desempenho do modelo com métricas adequadas ao contexto de saúde, com **ênfase em Recall (Sensibilidade)**.
+
+
+
+## 🧠 Abordagem Metodológica
+
+O projeto contempla as seguintes etapas:
+
+1. **Análise exploratória dos dados (EDA)**
+2. **Pré-processamento** (limpeza, normalização e seleção de atributos)
+3. **Treinamento do modelo de Regressão Logística**
+4. **Avaliação do modelo** (classification report, recall, AUC quando aplicável)
+5. **Inferência em novos dados**
+
+O relatório completo da análise está documentado no notebook disponível na pasta `notebooks/`.
+
+
+
+## 🗂 Estrutura do Projeto
+
+```text
 cancer-breast-logistic-ml/
 ├── data/
 │   ├── data.csv                 # Dataset do Kaggle (obrigatório)
-│   └── entrada_exemplo.csv      # Exemplo para inferência
+│   └── entrada_exemplo.csv      # Exemplo de dados para inferência
 │
 ├── notebooks/
 │   └── relatorio_tech_challenge_fase1.ipynb
 │
 ├── src/
-│   └── train.py                 # Treinamento do modelo
+│   └── train.py                 # Script de treinamento do modelo
 │
 ├── artifacts/
 │   └── model.joblib             # Modelo treinado
 │
-├── main.py                      # Inferência (uso do modelo)
+├── main.py                      # Script de inferência
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
-
 ```
 
 
-⚙️ Requisitos
 
-🔹 Para execução com Docker (recomendado)
+## ⚙️ Requisitos
 
-Docker 20.x ou superior
+### 🔹 Execução com Docker (recomendado)
 
-Docker Compose (se utilizado)
+* Docker **20.x** ou superior
+* Docker Compose (opcional)
 
-🔹 Para execução sem Docker (opcional)
+### 🔹 Execução sem Docker (opcional)
 
-Python 3.9+
+* Python **3.9+**
+* Jupyter Notebook
+* Bibliotecas listadas em `requirements.txt`
 
-Jupyter Notebook
 
-Bibliotecas listadas em requirements.txt
 
-🐳 Como Executar o Projeto com Docker (Recomendado)
+## 🐳 Como Executar o Projeto com Docker (Recomendado)
 
-1️⃣ Clonar ou baixar o projeto
+### 1️⃣ Clonar o repositório
+
+```bash
 git clone <url-do-repositorio>
-cd tech-challenge-fase1
-
-2️⃣ Build da imagem Docker
-
-```bash
-    docker build -t tech-challenge-ml .
-```
-3️⃣ Treinar o modelo dentro do Docker
-```bash
-    docker run --rm -v %cd%/artifacts:/app/artifacts tech-challenge-ml python src/train.py --out artifacts/model.joblib
-```
-4️⃣ Inferência (uso do modelo treinado)
-
-```bash
-    docker run --rm -v %cd%:/app tech-challenge-ml python main.py --model artifacts/model.joblib --input data/entrada_exemplo.csv --output data/predicoes.csv
-```
-> No Linux/Mac troque `%cd%` por `$(pwd)`.
-
-5️⃣ Executar o container
-
-```bash
-  docker compose up --build
+cd cancer-breast-logistic-ml
 ```
 
-Abra o link http://localhost:8888/lab/ no navegador.
+### 2️⃣ Build da imagem Docker
 
-6️⃣ Abrir o notebook
+```bash
+docker build -t cancer-breast-ml .
+```
 
-No Jupyter, abra:
+### 3️⃣ Treinar o modelo
 
-📘 relatorio_tech_challenge_fase1.ipynb
+O comando abaixo executa o treinamento e salva o modelo treinado em `artifacts/model.joblib`.
 
-Execute as células em ordem sequencial.
+**Windows (PowerShell):**
 
-👥 Equipe
+```bash
+docker run --rm -v ${PWD}:/app cancer-breast-ml python src/train.py --out artifacts/model.joblib
+```
 
-Este projeto foi desenvolvido pelo Grupo 56 como parte do Tech Challenge FIAP Pós-Tech:
+**Linux / macOS:**
 
-Araguacy Bezerra Pereira
-Emerson Vitorio de Oliveira
-Robson Carvalho Calixto
-Vinicius Fernando M. Costa
+```bash
+docker run --rm -v "$(pwd)":/app cancer-breast-ml python src/train.py --out artifacts/model.joblib
+```
+
+### 4️⃣ Inferência (uso do modelo treinado)
+
+Gera o arquivo `predicoes.csv` a partir de um conjunto de dados de entrada.
+
+**Windows (PowerShell):**
+
+```bash
+docker run --rm -v ${PWD}:/app cancer-breast-ml python main.py \
+  --model artifacts/model.joblib \
+  --input data/entrada_exemplo.csv \
+  --output predicoes.csv
+```
+
+**Linux / macOS:**
+
+```bash
+docker run --rm -v "$(pwd)":/app cancer-breast-ml python main.py \
+  --model artifacts/model.joblib \
+  --input data/entrada_exemplo.csv \
+  --output predicoes.csv
+```
 
 
-📚 Referências
+### 5️⃣ Execução do Jupyter Notebook (opcional)
 
-Dataset: [Breast Cancer Wisconsin (Diagnostic) Data Set](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data)
+```bash
+docker compose up --build
+```
 
-James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An Introduction to Statistical Learning
+Acesse no navegador:
+👉 [http://localhost:8888/lab/](http://localhost:8888/lab/)
 
-Géron, A. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow
+Abra o notebook:
 
-FÁVERO, Luiz Paulo; BELFIORE, Patrícia. Manual de análise de dados: estatística e machine learning 2. ed. Rio de Janeiro: Elsevier, 2024
+📘 `relatorio_tech_challenge_fase1.ipynb`
+Execute as células **em ordem sequencial**.
+
+
+## 🧾 Saída Esperada
+
+### 🔹 Treinamento
+
+* Impressão das métricas de avaliação:
+
+    * `classification_report`
+    * Recall (Sensibilidade)
+    * AUC (quando aplicável)
+* Modelo salvo em:
+
+  ```text
+  artifacts/model.joblib
+  ```
+
+### 🔹 Inferência
+
+* Geração do arquivo:
+
+  ```text
+  predicoes.csv
+  ```
+* Colunas geradas:
+
+    * `pred_maligno` (0 = Benigno | 1 = Maligno)
+    * `pred_label` (Benigno / Maligno)
+    * `proba_maligno` (probabilidade estimada, se disponível)
+
+    
+## 📚 Referências
+
+* Dataset: *Breast Cancer Wisconsin (Diagnostic) Data Set*
+  [https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data)
+
+* James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013).
+  *An Introduction to Statistical Learning.*
+
+* Géron, A. (2019).
+  *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow.*
+
+* Fávero, L. P., & Belfiore, P. (2024).
+  *Manual de análise de dados: estatística e machine learning.* Elsevier.
