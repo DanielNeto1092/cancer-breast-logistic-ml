@@ -65,30 +65,6 @@ cd tech-challenge-fase1
 ```
 > No Linux/Mac troque `%cd%` por `$(pwd)`.
 
-▶️ Treinamento do Modelo (train.py)
-
-Este comando treina o modelo e gera o arquivo artifacts/model.joblib.
-
-docker run --rm `
-  -v ${PWD}:/app `
-tech-challenge-ml `
-python src/train.py --out artifacts/model.joblib
-
-
-🔹 O volume (-v ${PWD}:/app) garante que o modelo treinado seja salvo na máquina local.
-
-▶️ Inferência / Utilização do Modelo (main.py)
-
-Este comando aplica o modelo treinado a dados não rotulados e gera um arquivo de saída com as predições.
-
-docker run --rm `
-  -v ${PWD}:/app `
-tech-challenge-ml `
-python main.py --input data/entrada_exemplo.csv
-
-
-🔹 O arquivo predicoes.csv será gerado no diretório do projeto.
-
 3️⃣ Executar o container
 
 ```bash
