@@ -2,11 +2,9 @@
 
 ## Classificação de Câncer de Mama com Machine Learning
 
-Este projeto foi desenvolvido como parte do **Tech Challenge – Fase 1 (FIAP Pós-Tech)**, com o objetivo de aplicar conceitos de **Aprendizado de Máquina** na resolução de um problema de **classificação supervisionada**, utilizando **Regressão Logística** para análise de dados relacionados ao diagnóstico de câncer de mama.
+Este projeto foi desenvolvido como parte do **Tech Challenge – Fase 1 (FIAP Pós-Tech)**, com o objetivo de aplicar conceitos de **Aprendizado de Máquina** na resolução de um problema de **classificação supervisionada** voltado ao diagnóstico de câncer de mama. A **Regressão Logística** é adotada como **modelo principal**, por sua interpretabilidade e ampla utilização em problemas de saúde, enquanto outros algoritmos são explorados apenas para **comparação de desempenho**.
 
 A aplicação utiliza **Docker** para garantir **padronização do ambiente**, **reprodutibilidade dos resultados** e **facilidade de execução** em diferentes sistemas operacionais.
-
-
 
 ## 🎯 Objetivo do Projeto
 
@@ -15,25 +13,22 @@ O diagnóstico precoce do câncer de mama é fundamental para aumentar as chance
 Neste contexto, o projeto tem como objetivo:
 
 * Construir um **modelo de classificação binária** (Benigno × Maligno);
-* Aplicar **Regressão Logística** como modelo base;
+* Aplicar a **Regressão Logística** como **modelo principal** do projeto;
 * Realizar **análise exploratória e pré-processamento dos dados**;
 * Avaliar o desempenho do modelo com métricas adequadas ao contexto de saúde, com **ênfase em Recall (Sensibilidade)**.
-
-
 
 ## 🧠 Abordagem Metodológica
 
 O projeto contempla as seguintes etapas:
 
 1. **Análise exploratória dos dados (EDA)**
-2. **Pré-processamento** (limpeza, normalização e seleção de atributos)
-3. **Treinamento do modelo de Regressão Logística**
-4. **Avaliação do modelo** (classification report, recall, AUC quando aplicável)
-5. **Inferência em novos dados**
+2. **Pré-processamento** (limpeza, imputação de valores ausentes e padronização)
+3. **Treinamento do modelo de Regressão Logística** como abordagem central
+4. **Comparação exploratória com outros algoritmos de classificação** (KNN, Árvore de Decisão e Random Forest), utilizada apenas como apoio analítico
+5. **Avaliação do modelo**, com ênfase em métricas adequadas ao contexto clínico, especialmente **Recall (Sensibilidade)**
+6. **Inferência em novos dados**
 
 O relatório completo da análise está documentado no notebook disponível na pasta `notebooks/`.
-
-
 
 ## 🗂 Estrutura do Projeto
 
@@ -58,11 +53,9 @@ cancer-breast-logistic-ml/
 └── README.md
 ```
 
-
-
 ## ⚙️ Requisitos
 
-### 🔹 Execução com Docker (recomendado)
+### 🔹 Execução com Docker
 
 * Docker **20.x** ou superior
 * Docker Compose (opcional)
@@ -73,9 +66,7 @@ cancer-breast-logistic-ml/
 * Jupyter Notebook
 * Bibliotecas listadas em `requirements.txt`
 
-
-
-## 🐳 Como Executar o Projeto com Docker (Recomendado)
+## 🐳 Como Executar o Projeto com Docker
 
 ### 1️⃣ Clonar o repositório
 
@@ -128,7 +119,6 @@ docker run --rm -v "$(pwd)":/app cancer-breast-ml python main.py \
   --output predicoes.csv
 ```
 
-
 ### 5️⃣ Execução do Jupyter Notebook (opcional)
 
 ```bash
@@ -142,7 +132,6 @@ Abra o notebook:
 
 📘 `relatorio_tech_challenge_fase1.ipynb`
 Execute as células **em ordem sequencial**.
-
 
 ## 🧾 Saída Esperada
 
@@ -172,7 +161,6 @@ Execute as células **em ordem sequencial**.
     * `pred_label` (Benigno / Maligno)
     * `proba_maligno` (probabilidade estimada, se disponível)
 
-    
 ## 📚 Referências
 
 * Dataset: *Breast Cancer Wisconsin (Diagnostic) Data Set*
