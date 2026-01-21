@@ -13,22 +13,22 @@ O diagnóstico precoce do câncer de mama é essencial para aumentar as chances 
 Neste contexto, o projeto busca construir e avaliar modelos de classificação capazes de auxiliar a decisão clínica, priorizando métricas adequadas para problemas de saúde, como Recall (Sensibilidade).
 
 🗂 Estrutura do Projeto
-Machine-Learning-Classification-blue/
-│
+
+cancer-breast-logistic-ml/
 ├── data/
-│   ├── data.csv                # Dataset do Kaggle (obrigatório)
-│   └── entrada_exemplo.csv     # Exemplo para inferência
+│   ├── data.csv                 # Dataset do Kaggle (obrigatório)
+│   └── entrada_exemplo.csv      # Exemplo para inferência
 │
 ├── notebooks/
 │   └── relatorio_tech_challenge_fase1.ipynb
 │
 ├── src/
-│   └── train.py                # Treinamento do modelo
+│   └── train.py                 # Treinamento do modelo
 │
 ├── artifacts/
-│   └── model.joblib            # Modelo treinado
+│   └── model.joblib             # Modelo treinado
 │
-├── main.py                     # Inferência (uso do modelo)
+├── main.py                      # Inferência (uso do modelo)
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
@@ -60,28 +60,33 @@ cd tech-challenge-fase1
 
 ```bash
     docker build -t tech-challenge-ml .
+```
+3️⃣ Treinar o modelo dentro do Docker
+```bash
     docker run --rm -v %cd%/artifacts:/app/artifacts tech-challenge-ml python src/train.py --out artifacts/model.joblib
+```
+4️⃣ Inferência (uso do modelo treinado)
+
+```bash
     docker run --rm -v %cd%:/app tech-challenge-ml python main.py --model artifacts/model.joblib --input data/entrada_exemplo.csv --output data/predicoes.csv
 ```
 > No Linux/Mac troque `%cd%` por `$(pwd)`.
 
-3️⃣ Executar o container
+5️⃣ Executar o container
 
 ```bash
   docker compose up --build
 ```
 
-
 Abra o link http://localhost:8888/lab/tree/ no navegador.
 
-4️⃣ Abrir o notebook
+6️⃣ Abrir o notebook
 
 No Jupyter, abra:
 
 📘 relatorio_tech_challenge_fase1.ipynb
 
 Execute as células em ordem sequencial.
-
 
 👥 Equipe
 
