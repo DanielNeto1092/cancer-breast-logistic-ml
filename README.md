@@ -81,7 +81,7 @@ cd tech-challenge-fase1
   docker compose up --build
 ```
 
-Abra o link http://localhost:8888/lab/tree/ no navegador.
+Abra o link http://localhost:8888/lab/ no navegador.
 
 6️⃣ Abrir o notebook
 
