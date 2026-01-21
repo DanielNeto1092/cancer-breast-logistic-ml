@@ -71,6 +71,7 @@ cancer-breast-logistic-ml/
 ### 1️⃣ Clonar o repositório
 
 ```bash
+
 git clone <url-do-repositorio>
 cd cancer-breast-logistic-ml
 ```
@@ -78,6 +79,7 @@ cd cancer-breast-logistic-ml
 ### 2️⃣ Build da imagem Docker
 
 ```bash
+
 docker build -t cancer-breast-ml .
 ```
 
@@ -88,12 +90,14 @@ O comando abaixo executa o treinamento e salva o modelo treinado em `artifacts/m
 **Windows (PowerShell):**
 
 ```bash
+
 docker run --rm -v ${PWD}:/app cancer-breast-ml python src/train.py --out artifacts/model.joblib
 ```
 
 **Linux / macOS:**
 
 ```bash
+
 docker run --rm -v "$(pwd)":/app cancer-breast-ml python src/train.py --out artifacts/model.joblib
 ```
 
@@ -104,6 +108,7 @@ Gera o arquivo `predicoes.csv` a partir de um conjunto de dados de entrada.
 **Windows (PowerShell):**
 
 ```bash
+
 docker run --rm -v ${PWD}:/app cancer-breast-ml python main.py \
   --model artifacts/model.joblib \
   --input data/entrada_exemplo.csv \
@@ -113,6 +118,7 @@ docker run --rm -v ${PWD}:/app cancer-breast-ml python main.py \
 **Linux / macOS:**
 
 ```bash
+
 docker run --rm -v "$(pwd)":/app cancer-breast-ml python main.py \
   --model artifacts/model.joblib \
   --input data/entrada_exemplo.csv \
@@ -122,6 +128,7 @@ docker run --rm -v "$(pwd)":/app cancer-breast-ml python main.py \
 ### 5️⃣ Execução do Jupyter Notebook (opcional)
 
 ```bash
+
 docker compose up --build
 ```
 
