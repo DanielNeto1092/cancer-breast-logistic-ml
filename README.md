@@ -13,6 +13,7 @@ O diagnóstico precoce do câncer de mama é essencial para aumentar as chances 
 Neste contexto, o projeto busca construir e avaliar modelos de classificação capazes de auxiliar a decisão clínica, priorizando métricas adequadas para problemas de saúde, como Recall (Sensibilidade).
 
 🗂 Estrutura do Projeto
+```
 
 cancer-breast-logistic-ml/
 ├── data/
@@ -32,6 +33,8 @@ cancer-breast-logistic-ml/
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
+
+```
 
 
 ⚙️ Requisitos
