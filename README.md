@@ -119,10 +119,8 @@ docker run --rm -v ${PWD}:/app cancer-breast-ml python main.py \
 
 ```bash
 
-docker run --rm -v "$(pwd)":/app cancer-breast-ml python main.py \
-  --model artifacts/model.joblib \
-  --input data/entrada_exemplo.csv \
-  --output predicoes.csv
+docker run --rm -v ${PWD}:/app cancer-breast-ml python main.py --model artifacts/model.joblib --input data/entrada_exemplo.csv --output predicoes.csv
+
 ```
 
 ### 5️⃣ Execução do Jupyter Notebook (opcional)
