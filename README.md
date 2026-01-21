@@ -7,28 +7,32 @@ O projeto utiliza Docker para garantir padronização do ambiente, reprodutibili
 
 🎯 Objetivo do Projeto
 
-Aplicar técnicas de Machine Learning em um problema real de classificação
+🎯 Problema
 
-Utilizar boas práticas de pré-processamento de dados
+O diagnóstico precoce do câncer de mama é essencial para aumentar as chances de tratamento eficaz.
+Neste contexto, o projeto busca construir e avaliar modelos de classificação capazes de auxiliar a decisão clínica, priorizando métricas adequadas para problemas de saúde, como Recall (Sensibilidade).
 
-Treinar e avaliar um modelo supervisionado
+🗂 Estrutura do Projeto
+Machine-Learning-Classification-blue/
+│
+├── data/
+│   ├── data.csv                # Dataset do Kaggle (obrigatório)
+│   └── entrada_exemplo.csv     # Exemplo para inferência
+│
+├── notebooks/
+│   └── relatorio_tech_challenge_fase1.ipynb
+│
+├── src/
+│   └── train.py                # Treinamento do modelo
+│
+├── artifacts/
+│   └── model.joblib            # Modelo treinado
+│
+├── main.py                     # Inferência (uso do modelo)
+├── requirements.txt
+├── Dockerfile
+└── README.md
 
-Garantir reprodutibilidade por meio de ambiente containerizado (Docker)
-
-📂 Estrutura do Projeto
-
-O projeto está organizado da seguinte forma:
-
-Notebook:
-
-tech_challenge_fase1_cancer_mama.ipynb:
-Consolida a análise exploratória, o pré-processamento dos dados e a implementação e avaliação de um modelo de machine learning para classificação.
-
-Diretórios:
-
-/data: Contém o dataset utilizado no projeto
-
-/notebook: Armazena o notebook Jupyter utilizado no desenvolvimento do projeto.
 
 ⚙️ Requisitos
 
@@ -55,10 +59,35 @@ cd tech-challenge-fase1
 2️⃣ Build da imagem Docker
 
 ```bash
-  docker build -t tech-challenge-fase1 .
-  docker run --rm -it -p 8888:8888 tech-challenge-fase1
+    docker build -t tech-challenge-ml .
+    docker run --rm -v %cd%/artifacts:/app/artifacts tech-challenge-ml python src/train.py --out artifacts/model.joblib
+    docker run --rm -v %cd%:/app tech-challenge-ml python main.py --model artifacts/model.joblib --input data/entrada_exemplo.csv --output data/predicoes.csv
 ```
+> No Linux/Mac troque `%cd%` por `$(pwd)`.
 
+▶️ Treinamento do Modelo (train.py)
+
+Este comando treina o modelo e gera o arquivo artifacts/model.joblib.
+
+docker run --rm `
+  -v ${PWD}:/app `
+tech-challenge-ml `
+python src/train.py --out artifacts/model.joblib
+
+
+🔹 O volume (-v ${PWD}:/app) garante que o modelo treinado seja salvo na máquina local.
+
+▶️ Inferência / Utilização do Modelo (main.py)
+
+Este comando aplica o modelo treinado a dados não rotulados e gera um arquivo de saída com as predições.
+
+docker run --rm `
+  -v ${PWD}:/app `
+tech-challenge-ml `
+python main.py --input data/entrada_exemplo.csv
+
+
+🔹 O arquivo predicoes.csv será gerado no diretório do projeto.
 
 3️⃣ Executar o container
 
@@ -66,13 +95,14 @@ cd tech-challenge-fase1
   docker compose up --build
 ```
 
+
 Abra o link http://localhost:8888/lab/tree/ no navegador.
 
 4️⃣ Abrir o notebook
 
 No Jupyter, abra:
 
-📘 tech_challenge_fase1_cancer_mama_corrigido.ipynb
+📘 relatorio_tech_challenge_fase1.ipynb
 
 Execute as células em ordem sequencial.
 
